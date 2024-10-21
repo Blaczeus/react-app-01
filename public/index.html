@@ -31,7 +31,7 @@
     <!-- Dark mode toggle button -->
     <button id="theme-toggle" class="fixed top-4 right-4 p-2 bg-gray-300 dark:bg-gray-700 text-black dark:text-white 
                  rounded-full shadow-md hover:bg-gray-400 dark:hover:bg-gray-600 transition">
-      Toggle Dark Mode
+      Dark Mode
     </button>
     <!--
       This HTML file is a template.
@@ -46,6 +46,7 @@
     <script>
       const themeToggleButton = document.getElementById( 'theme-toggle' );
       const body = document.body;
+      const toggleBtn = document.getElementById('theme-toggle');
 
       const savedTheme = localStorage.getItem( 'theme' );
       if ( savedTheme )
@@ -56,6 +57,8 @@
       themeToggleButton.addEventListener( 'click', () =>
       {
         const isDarkMode = body.classList.toggle( 'dark' );
+
+        isDarkMode ? toggleBtn.innerHTML = 'Light Mode' : toggleBtn.innerHTML = 'Dark Mode';
 
         localStorage.setItem( 'theme', isDarkMode ? 'dark' : 'light' );
       } );
