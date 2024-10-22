@@ -3,10 +3,13 @@ import './assets/tailwind.css';
 function App ()
 {
   return (
-    <div className="min-h-screen bg-gray-50 dark:bg-gray-900 flex items-center justify-center">
-      <form className="bg-white dark:bg-gray-800 p-10 rounded-2xl shadow-lg w-full max-w-3xl">
+    <div className="flex items-center justify-center min-h-screen bg-gray-50 dark:bg-gray-900">
+      {/* <button id="theme-toggle" className="fixed p-2 text-black transition bg-gray-300 rounded-full shadow-md top-4 right-4 dark:bg-gray-700 dark:text-white hover:bg-gray-400 dark:hover:bg-gray-600">
+        Dark Mode
+      </button> */}
+      <form className="w-full max-w-3xl p-10 bg-white shadow-lg dark:bg-gray-800 rounded-2xl">
         <div className="space-y-6">
-          <div className="border-b border-gray-300 dark:border-gray-700 pb-6">
+          <div className="pb-6 border-b border-gray-300 dark:border-gray-700">
             <h2 className="text-xl font-bold text-gray-900 dark:text-white">Profile</h2>
             <p className="mt-1 text-sm text-gray-600 dark:text-gray-400">
               This information will be displayed publicly, so be mindful of what you share.
@@ -19,16 +22,14 @@ function App ()
                 id="username"
                 name="username"
                 type="text"
-                placeholder="janesmith"
                 autoComplete="username"
-                className="mt-1 block w-full rounded-lg border-gray-300 dark:border-gray-700 dark:bg-gray-900 dark:text-white 
-                focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                className="block w-full mt-1 border-gray-300 rounded-lg dark:border-gray-700 dark:bg-gray-900 dark:text-white focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
               />
             </div>
           </div>
 
           {/* Grid Layout for Two Columns */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+          <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
             <div>
               <label htmlFor="first-name" className="block text-sm font-medium text-gray-900 dark:text-white">
                 First Name
@@ -38,8 +39,7 @@ function App ()
                 name="first-name"
                 type="text"
                 autoComplete="given-name"
-                className="mt-1 block w-full rounded-lg border-gray-300 dark:border-gray-700 dark:bg-gray-900 dark:text-white
-                focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                className="block w-full mt-1 border-gray-300 rounded-lg dark:border-gray-700 dark:bg-gray-900 dark:text-white focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
               />
             </div>
 
@@ -52,8 +52,7 @@ function App ()
                 name="last-name"
                 type="text"
                 autoComplete="family-name"
-                className="mt-1 block w-full rounded-lg border-gray-300 dark:border-gray-700 dark:bg-gray-900 dark:text-white
-                focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                className="block w-full mt-1 border-gray-300 rounded-lg dark:border-gray-700 dark:bg-gray-900 dark:text-white focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
               />
             </div>
 
@@ -66,8 +65,7 @@ function App ()
                 name="email"
                 type="email"
                 autoComplete="email"
-                className="mt-1 block w-full rounded-lg border-gray-300 dark:border-gray-700 dark:bg-gray-900 dark:text-white
-                focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                className="block w-full mt-1 border-gray-300 rounded-lg dark:border-gray-700 dark:bg-gray-900 dark:text-white focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
               />
             </div>
 
@@ -79,8 +77,7 @@ function App ()
                 id="country"
                 name="country"
                 autoComplete="country-name"
-                className="mt-1 block w-full rounded-lg border-gray-300 dark:border-gray-700 dark:bg-gray-900 dark:text-white
-                focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                className="block w-full mt-1 border-gray-300 rounded-lg dark:border-gray-700 dark:bg-gray-900 dark:text-white focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
               >
                 <option>Nigeria</option>
                 <option>United States</option>
@@ -97,8 +94,7 @@ function App ()
               id="about"
               name="about"
               rows={4}
-              className="mt-1 block w-full rounded-lg border-gray-300 dark:border-gray-700 dark:bg-gray-900 dark:text-white 
-              focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+              className="block w-full mt-1 border-gray-300 rounded-lg dark:border-gray-700 dark:bg-gray-900 dark:text-white focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
               placeholder="Tell us something about yourself"
             />
           </div>
@@ -106,7 +102,7 @@ function App ()
           <div className="flex items-center justify-end">
             <button
               type="submit"
-              className="px-5 py-3 text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-500 rounded-lg"
+              className="px-5 py-3 text-sm font-medium text-white bg-indigo-600 rounded-lg hover:bg-indigo-500"
             >
               Submit
             </button>
