@@ -1,12 +1,12 @@
 import './assets/tailwind.css';
+import ThemeToggleButton from './utils';
+import "@theme-toggles/react/css/Classic.css"
 
 function App ()
 {
   return (
     <div className="flex items-center justify-center min-h-screen bg-gray-50 dark:bg-gray-900">
-      {/* <button id="theme-toggle" className="fixed p-2 text-black transition bg-gray-300 rounded-full shadow-md top-4 right-4 dark:bg-gray-700 dark:text-white hover:bg-gray-400 dark:hover:bg-gray-600">
-        Dark Mode
-      </button> */}
+      <ThemeToggleButton />
       <form className="w-full max-w-3xl p-10 bg-white shadow-lg dark:bg-gray-800 rounded-2xl">
         <div className="space-y-6">
           <div className="pb-6 border-b border-gray-300 dark:border-gray-700">

@@ -1,34 +1,35 @@
 import React, { useState, useEffect } from 'react';
+import { Classic } from '@theme-toggles/react';
 
 const ThemeToggleButton = () =>
 {
-    const [ isDarkMode, setIsDarkMode ] = useState( false );
+    const [ isToggled, setIsToggled ] = useState( false );
 
     useEffect( () =>
     {
         const savedTheme = localStorage.getItem( 'theme' );
-        if ( savedTheme )
-        {
-            setIsDarkMode( savedTheme === 'dark' );
-            document.body.classList.toggle( 'dark', savedTheme === 'dark' );
-        }
-    }, [] );
-
+        const isDark = savedTheme === 'dark' ;
+        setIsToggled( isDark );
+        document.body.classList.toggle('dark', isDark)
+    }, []);
+    
     const handleToggle = () =>
     {
-        const newTheme = !isDarkMode ? 'dark' : 'light';
-        setIsDarkMode( !isDarkMode );
+        const newTheme = !isToggled ? 'dark' : 'light';
+        setIsToggled( !isToggled );
         document.body.classList.toggle( 'dark', newTheme === 'dark' );
-        localStorage.setItem( 'theme', newTheme );
+        localStorage.setItem( 'theme', newTheme);
     };
 
     return (
-        <button
-            onClick={handleToggle}
-            className="fixed p-2 text-black transition bg-gray-300 rounded-full shadow-md top-4 right-4 dark:bg-gray-700 dark:text-white hover:bg-gray-400 dark:hover:bg-gray-600"
-        >
-            {isDarkMode ? 'Light Mode' : 'Dark Mode'}
-        </button>
+        <Classic
+            toggled={isToggled}
+            toggle={handleToggle}
+            duration={500}
+            className={`fixed text-4xl font-bold top-4 right-4 
+                ${ isToggled ? 'text-yellow-500 hover:text-yellow-300' : 'text-gray-800 hover:text-gray-600'}`}
+            title="Toggle theme"
+        />
     );
 };
 
