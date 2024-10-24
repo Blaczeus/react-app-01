@@ -1,87 +1,74 @@
 import React, { useState } from 'react';
+import validate from './FormValidation';
 
 const ProfileForm = ( { onSubmit } ) =>
 {
     const [ formData, setFormData ] = useState( {
-        username: '',
         firstName: '',
         lastName: '',
-        email: '',
-        about: ''
+        role: '',
+        company: '',
+        github: '',
+        facebook: '',
+        twitter: '',
+        instagram: '',
     } );
 
-    const [ errors, setErrors ] = useState( {} );
+    const [ errors, setErrors ] = useState( {} );    
 
-    const handleChange = ( event ) =>
+    const handleChange = ( e ) =>
     {
-        const { name, value } = event.target;
+        const { name, value } = e.target;
         setFormData( { ...formData, [ name ]: value } );
-    };
-
-    const validate = () =>
-    {
-        let validationErrors = {};
-        if ( !formData.username ) validationErrors.username = 'Username is required';
-        if ( !formData.firstName ) validationErrors.firstName = 'First name is required';
-        if ( !formData.lastName ) validationErrors.lastName = 'Last name is required';
-        if ( !formData.email || !/\S+@\S+\.\S+/.test( formData.email ) ) validationErrors.email = 'A valid email is required';
-        return validationErrors;
-    };
+        console.log( formData );
+    }
 
     const handleSubmit = ( e ) =>
     {
-        e.preventDefault();
-        const validationErrors = validate();
+        let validationErrors = validate(formData);
+
         if ( Object.keys( validationErrors ).length > 0 )
         {
             setErrors( validationErrors );
-        } else
-        {
-            setErrors( {} );
-            onSubmit( formData );
-            console.log( 'Form Data Submitted:', formData );
+            return;
         }
+        setErrors( {} );
+        onSubmit( formData );
+
+        // console.log( formData );
     };
 
     return (
-        <form onSubmit={handleSubmit} className="w-full max-w-3xl p-10 bg-white shadow-lg dark:bg-gray-800 rounded-2xl">
-            <div className="space-y-6">
-                <div className="pb-6 border-b border-gray-300 dark:border-gray-700">
-                    <h2 className="text-xl font-bold text-gray-900 dark:text-white">Profile</h2>
-                    <p className="mt-1 text-sm text-gray-600 dark:text-gray-400">
-                        This information will be displayed publicly, so be mindful of what you share.
-                    </p>
-                    <div className="mt-4">
-                        <label htmlFor="username" className="block text-sm font-medium text-gray-900 dark:text-white">
-                            Username
-                        </label>
-                        <input
-                            id="username"
-                            name="username"
-                            type="text"
-                            value={formData.username}
-                            onChange={handleChange}
-                            required
-                            autoComplete="username"
-                            className="block w-full mt-1 border-gray-300 rounded-lg dark:border-gray-700 dark:bg-gray-900 dark:text-white"
-                        />
-                        {errors.username && <span className="text-red-500">{errors.username}</span>}
-                    </div>
-                </div>
-
+        <form
+            onSubmit={( e ) =>
+            {
+                e.preventDefault();
+                handleSubmit( e );
+            }}
+            className="w-full max-w-3xl p-10 bg-white shadow-lg dark:bg-gray-800 rounded-2xl"
+        >
+            <h2 className="text-4xl font-semibold tracking-tight text-center text-gray-900 dark:text-white sm:text-5xl">
+                Career Profile
+            </h2>
+            <p className="mt-2 text-sm leading-8 text-center text-gray-600 dark:text-gray-400">
+                Showcase your career profile
+            </p>
+            <div className="mt-12 space-y-6">
                 <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
+
                     <div>
                         <label htmlFor="firstName" className="block text-sm font-medium text-gray-900 dark:text-white">
                             First Name
                         </label>
                         <input
                             id="firstName"
-                            name="firstName"
                             type="text"
+                            name="firstName"
                             value={formData.firstName}
                             onChange={handleChange}
                             required
-                            className="block w-full mt-1 border-gray-300 rounded-lg dark:border-gray-700 dark:bg-gray-900 dark:text-white"
+                            className="block w-full mt-1 text-sm border-gray-300 rounded-lg dark:border-gray-700 dark:bg-gray-900 dark:text-white placeholder:text-sm"
+                            placeholder="John"
                         />
                         {errors.firstName && <span className="text-red-500">{errors.firstName}</span>}
                     </div>
@@ -92,49 +79,124 @@ const ProfileForm = ( { onSubmit } ) =>
                         </label>
                         <input
                             id="lastName"
-                            name="lastName"
                             type="text"
+                            name="lastName"
                             value={formData.lastName}
                             onChange={handleChange}
                             required
-                            className="block w-full mt-1 border-gray-300 rounded-lg dark:border-gray-700 dark:bg-gray-900 dark:text-white"
+                            className="block w-full mt-1 text-sm border-gray-300 rounded-lg dark:border-gray-700 dark:bg-gray-900 dark:text-white placeholder:text-sm"
+                            placeholder="Doe"
                         />
                         {errors.lastName && <span className="text-red-500">{errors.lastName}</span>}
                     </div>
 
                     <div>
-                        <label htmlFor="email" className="block text-sm font-medium text-gray-900 dark:text-white">
-                            Email Address
+                        <label htmlFor="role" className="block text-sm font-medium text-gray-900 dark:text-white">
+                            Current Role
                         </label>
                         <input
-                            id="email"
-                            name="email"
-                            type="email"
-                            value={formData.email}
+                            id="role"
+                            type="text"
+                            name="role"
+                            value={formData.role}
                             onChange={handleChange}
                             required
-                            className="block w-full mt-1 border-gray-300 rounded-lg dark:border-gray-700 dark:bg-gray-900 dark:text-white"
+                            className="block w-full mt-1 text-sm border-gray-300 rounded-lg dark:border-gray-700 dark:bg-gray-900 dark:text-white placeholder:text-sm"
+                            placeholder="Backend Developer"
                         />
-                        {errors.email && <span className="text-red-500">{errors.email}</span>}
+                        {errors.role && <span className="text-red-500">{errors.role}</span>}
+                    </div>
+
+                    <div>
+                        <label htmlFor="company" className="block text-sm font-medium text-gray-900 dark:text-white">
+                            Company/Organization
+                        </label>
+                        <input
+                            id="company"
+                            type="text"
+                            name="company"
+                            value={formData.company}
+                            onChange={handleChange}
+                            required
+                            className="block w-full mt-1 text-sm border-gray-300 rounded-lg dark:border-gray-700 dark:bg-gray-900 dark:text-white placeholder:text-sm"
+                            placeholder="Nervego"
+                        />
+                        {errors.company && <span className="text-red-500">{errors.company}</span>}
+                    </div>
+
+                    {/* GitHub Profile Field */}
+                    <div className='sm:col-span-2'>
+                        <label htmlFor="github" className="block text-sm font-medium text-gray-900 dark:text-white">
+                            GitHub Profile
+                        </label>
+                        <input
+                            id="github"
+                            type="text"
+                            name="github"
+                            value={formData.github}
+                            onChange={handleChange}
+                            required
+                            className="block w-full mt-1 text-sm border-gray-300 rounded-lg dark:border-gray-700 dark:bg-gray-900 dark:text-white placeholder:text-sm"
+                            placeholder="Enter Github username"
+                        />
+                        {errors.github && <span className="text-red-500">{errors.github}</span>}
+                    </div>
+                </div>
+                {/* Social Media Fields */}
+                <div className="pb-12 border-b border-gray-900/10">
+
+                    <div className="grid grid-cols-1 gap-6 sm:grid-cols-3">
+                        <div>
+                            <label htmlFor="facebook" className="block text-sm font-medium text-gray-900 dark:text-white">
+                                Facebook Handle
+                            </label>
+                            <input
+                                id="facebook"
+                                type="text"
+                                name="facebook"
+                                value={formData.facebook}
+                                onChange={handleChange}
+                                required className="block w-full mt-1 text-sm border-gray-300 rounded-lg dark:border-gray-700 dark:bg-gray-900 dark:text-white placeholder:text-xs"
+                                placeholder="Enter Facebook handle"
+                            />
+                            {errors.facebook && <span className="text-red-500">{errors.facebook}</span>}
+                        </div>
+
+                        <div>
+                            <label htmlFor="twitter" className="block text-sm font-medium text-gray-900 dark:text-white">
+                                Twitter Handle
+                            </label>
+                            <input
+                                id="twitter"
+                                type="text"
+                                name="twitter"
+                                value={formData.twitter}
+                                onChange={handleChange}
+                                required className="block w-full mt-1 text-sm border-gray-300 rounded-lg dark:border-gray-700 dark:bg-gray-900 dark:text-white placeholder:text-xs"
+                                placeholder="Enter Twitter handle"
+                            />
+                            {errors.twitter && <span className="text-red-500">{errors.twitter}</span>}
+                        </div>
+
+                        <div>
+                            <label htmlFor="instagram" className="block text-sm font-medium text-gray-900 dark:text-white">
+                                Instagram Handle
+                            </label>
+                            <input
+                                id="instagram"
+                                type="text"
+                                name="instagram"
+                                value={formData.instagram}
+                                onChange={handleChange}
+                                required className="block w-full mt-1 text-sm border-gray-300 rounded-lg dark:border-gray-700 dark:bg-gray-900 dark:text-white placeholder:text-xs"
+                                placeholder="Enter Instagram handle"
+                            />
+                            {errors.instagram && <span className="text-red-500">{errors.instagram}</span>}
+                        </div>
                     </div>
                 </div>
 
-                <div>
-                    <label htmlFor="about" className="block text-sm font-medium text-gray-900 dark:text-white">
-                        About
-                    </label>
-                    <textarea
-                        id="about"
-                        name="about"
-                        value={formData.about}
-                        onChange={handleChange}
-                        rows={4}
-                        className="block w-full mt-1 border-gray-300 rounded-lg dark:border-gray-700 dark:bg-gray-900 dark:text-white"
-                        placeholder="Tell us something about yourself"
-                    />
-                </div>
-
-                <div className="flex items-center justify-end">
+                <div className="flex items-center justify-end mt-6">
                     <button
                         type="submit"
                         className="px-5 py-3 text-sm font-medium text-white bg-indigo-600 rounded-lg hover:bg-indigo-500"
@@ -142,6 +204,7 @@ const ProfileForm = ( { onSubmit } ) =>
                         Submit
                     </button>
                 </div>
+
             </div>
         </form>
     );

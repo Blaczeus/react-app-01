@@ -2,6 +2,16 @@
 @tailwind components;
 @tailwind utilities;
 
+.dark\:bg-gray-800:is(.dark *) {
+    --tw-bg-opacity: 1;
+    background-color: rgb(31 41 55 / var(--tw-bg-opacity)) !important;
+}
+
+.dark\:bg-gray-900:is(.dark *) {
+    --tw-bg-opacity: 1;
+    background-color: rgb(17 24 39 / var(--tw-bg-opacity)) !important;
+}
+
 .App {
     text-align: center;
 }

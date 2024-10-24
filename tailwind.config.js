@@ -1,5 +1,7 @@
 /** @type {import('tailwindcss').Config} */
-module.exports = {
+import withMT from "@material-tailwind/react/utils/withMT";
+
+export default withMT( {
   darkMode: 'class',
   content: [
     "./src/**/*.{html,js,jsx,ts,tsx}",
@@ -9,5 +11,5 @@ module.exports = {
     extend: {},
   },
   plugins: [ require( '@tailwindcss/forms' ) ],
-}
+} )
 
