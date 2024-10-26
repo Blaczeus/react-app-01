@@ -1,22 +1,27 @@
 import './assets/tailwind.css';
 import React, { useState } from 'react';
 import ThemeToggleButton from './utils';
-import "@theme-toggles/react/css/Classic.css"
-import ProfileForm from './ProfileForm'
+import "@theme-toggles/react/css/Classic.css";
+import ProfileForm from './ProfileForm';
 import ProfileCard from './ProfileCard';
-
 
 function App ()
 {
   const [ profileData, setProfileData ] = useState( null );
+  const [ isSubmitted, setIsSubmitted ] = useState( false );
 
   const handleFormSubmit = ( data ) =>
   {
-    setProfileData( data );
+    if ( data )
+    {
+      setIsSubmitted( true );
+      setProfileData( data );
+    }
   };
 
   return (
     <div className="flex items-center justify-center min-h-screen isolate bg-gray-50 dark:bg-gray-900">
+      {/* Background shape */}
       <div
         aria-hidden="true"
         className="absolute inset-x-0 top-[-10rem] -z-10 transform-gpu overflow-hidden blur-3xl sm:top-[-20rem]"
@@ -29,9 +34,15 @@ function App ()
           className="relative left-1/2 -z-10 aspect-[1155/678] w-[36.125rem] max-w-none -translate-x-1/2 rotate-[30deg] bg-gradient-to-tr from-[#ff80b5] to-[#9089fc] opacity-30 sm:left-[calc(50%-40rem)] sm:w-[72.1875rem]"
         />
       </div>
+
       <ThemeToggleButton />
-      <ProfileForm onSubmit={handleFormSubmit} />
-      {profileData && <ProfileCard profileData={profileData} />}
+
+      {/* Conditional Rendering of Profile Card or Form */}
+      {isSubmitted ? (
+        profileData && <ProfileCard profileData={profileData} />
+      ) : (
+        <ProfileForm onSubmit={handleFormSubmit} />
+      )}
     </div>
   );
 }
